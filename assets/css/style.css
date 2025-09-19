@@ -1,0 +1,356 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  padding: 20px;
+  background: #f9f9f9;
+  color: #333;
+  scroll-behavior: smooth; /* smooth scrolling */
+}
+nav {
+  display: flex;
+  justify-content: space-between;
+  background: #222;
+  padding: 15px;
+}
+nav a {
+  color: white;
+  margin: 0 10px;
+  text-decoration: none;
+}
+nav a:hover { text-decoration: underline; }
+footer {
+  margin-top: 50px;
+  text-align: center;
+  padding: 15px;
+  background: #222;
+  color: white;
+}
+.dark-mode {
+  background: #111;
+  color: #eee;
+}
+body {
+  background: #111;
+  color: #0ff;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}/* General reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+/* Body styles */
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #0f0f0f;
+  color: #fff;
+  line-height: 1.6;
+}
+
+/* Header */
+header {
+  background: #111;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+header h1 {
+  font-size: 1.5rem;
+  color: #0ff;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+}
+
+nav ul li {
+  margin-left: 20px;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+nav ul li a:hover {
+  color: #0ff;
+}
+
+/* Sections */
+section {
+  padding: 60px 20px;
+  max-width: 900px;
+  margin: auto;
+  text-align: center;
+}
+
+section h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #0ff;
+}
+
+section p {
+  font-size: 1.1rem;
+}
+
+/* Footer */
+footer {
+  background: #111;
+  padding: 20px;
+  text-align: center;
+  font-size: 0.9rem;
+  margin-top: 40px;
+}
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+/* Body */
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #0a0a0a;
+  color: #eaeaea;
+  line-height: 1.6;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Header */
+header {
+  background: rgba(10, 10, 10, 0.9);
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+}
+
+header h1 {
+  font-size: 1.8rem;
+  color: #0ff;
+  text-shadow: 0 0 10px #0ff;
+  animation: glow 2s infinite alternate;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+}
+
+nav ul li {
+  margin-left: 20px;
+}
+
+nav ul li a {
+  color: #eaeaea;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s, text-shadow 0.3s;
+}
+
+nav ul li a:hover {
+  color: #0ff;
+  text-shadow: 0 0 5px #0ff;
+}
+
+/* Sections */
+section {
+  padding: 80px 20px;
+  max-width: 900px;
+  margin: auto;
+  text-align: center;
+}
+
+section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #0ff;
+  text-shadow: 0 0 15px #0ff;
+  animation: fadeIn 1.2s ease-in-out;
+}
+
+section p {
+  font-size: 1.2rem;
+  animation: fadeUp 1.5s ease-in-out;
+}
+
+/* Footer */
+footer {
+  background: #111;
+  padding: 20px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #888;
+  margin-top: 40px;
+}
+
+/* Animations */
+@keyframes glow {
+  from {
+    text-shadow: 0 0 5px #0ff, 0 0 10px #0ff;
+  }
+  to {
+    text-shadow: 0 0 20px #0ff, 0 0 40px #0ff;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+/* Header */
+header {
+  background: rgba(10, 10, 10, 0.85);
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(12px);
+  border-radius: 0 0 20px 20px;  /* Curved bottom */
+  border-bottom: 2px solid #0ff; /* Glow border */
+  box-shadow: 0 0 15px #0ff;
+}
+
+header h1 {
+  font-size: 1.8rem;
+  color: #0ff;
+  text-shadow: 0 0 10px #0ff;
+  animation: glow 2s infinite alternate;
+}
+
+/* Nav Menu */
+nav ul {
+  display: flex;
+  list-style: none;
+  background: rgba(20, 20, 20, 0.7);
+  padding: 10px 20px;
+  border-radius: 30px;
+  border: 1px solid #0ff;
+  box-shadow: 0 0 15px #0ff;
+}
+
+nav ul li {
+  margin: 0 15px;
+}
+
+nav ul li a {
+  color: #eaeaea;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 8px 15px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+/* Glowing hover effect */
+nav ul li a:hover {
+  color: #0ff;
+  background: rgba(0, 255, 255, 0.1);
+  box-shadow: 0 0 10px #0ff, 0 0 20px #0ff;
+}
+
+/* Hide default cursor */
+body {
+  cursor: none;
+}
+
+/* Neon custom cursor */
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #0ff;
+  box-shadow: 0 0 15px #0ff, 0 0 30px #0ff;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  transition: transform 0.1s ease;
+}
+
+/* Cursor expands on click */
+.cursor.click {
+  transform: translate(-50%, -50%) scale(1.8);
+}
+/* Force links & buttons to not change cursor */
+a, button {
+  cursor: none !important;
+}
+.cursor.hover-link {
+  background: #ff00ff;
+  box-shadow: 0 0 15px #ff00ff, 0 0 30px #ff00ff;
+}
+/* Navbar container */
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1rem 2rem;
+  background: #111;
+  border-radius: 50px; /* curved pill shape */
+  margin: 20px auto;
+  width: fit-content;
+  box-shadow: 0 0 15px rgba(0, 255, 200, 0.6);
+}
+
+/* Nav links */
+nav a {
+  position: relative;
+  padding: 10px 18px;
+  border-radius: 25px;
+  color: var(--text-dark);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+/* Glow on hover */
+nav a::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 25px;
+  background: linear-gradient(45deg, #00ffcc, #ff00ff);
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: -1;
+}
+
+nav a:hover::before {
+  opacity: 1;
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #00ffcc, 0 0 30px #ff00ff;
+}
+
+nav a:hover {
+  color: #fff;
+}
