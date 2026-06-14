@@ -5,6 +5,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ChatBot from "@/components/ChatBot";
 import ThemeProvider from "@/components/ThemeProvider";
+import PageTransition from "@/components/PageTransition";
 
 const inter = Inter({
   variable: "--font-geist-sans",
@@ -48,7 +49,9 @@ export default function RootLayout({
       <body className="min-h-full bg-background font-sans text-foreground transition-colors duration-300">
         <ThemeProvider>
           <Navigation />
-          <main className="flex-1">{children}</main>
+          <main className="flex-1">
+            <PageTransition>{children}</PageTransition>
+          </main>
           <Footer />
           <ChatBot />
         </ThemeProvider>

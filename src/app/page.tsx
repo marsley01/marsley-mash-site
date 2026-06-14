@@ -3,6 +3,8 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Section from "@/components/Section";
+import StatsCounter from "@/components/StatsCounter";
+import TechMarquee from "@/components/TechMarquee";
 
 const fadeUp = {
   initial: { opacity: 0, y: 40 },
@@ -191,6 +193,28 @@ export default function Home() {
         </div>
       </Section>
 
+      <Section className="bg-card/30">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          viewport={{ once: true, margin: "-100px" }}
+          className="text-center"
+        >
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+            By the Numbers
+          </h2>
+          <p className="mt-4 text-text-secondary">
+            A snapshot of the impact so far.
+          </p>
+          <div className="mt-12 grid gap-10 sm:grid-cols-3">
+            <StatsCounter target={5000} suffix="+" label="Orders Delivered" />
+            <StatsCounter target={8} suffix="+" label="Projects Built" />
+            <StatsCounter target={3} suffix="+" label="Years Building" />
+          </div>
+        </motion.div>
+      </Section>
+
       <Section>
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -214,6 +238,26 @@ export default function Home() {
                 {skill}
               </span>
             ))}
+          </div>
+        </motion.div>
+      </Section>
+
+      <Section className="bg-card/30">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          viewport={{ once: true, margin: "-100px" }}
+          className="text-center"
+        >
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+            Tools I Use
+          </h2>
+          <p className="mt-4 text-text-secondary">
+            The stack behind the work.
+          </p>
+          <div className="mt-10">
+            <TechMarquee />
           </div>
         </motion.div>
       </Section>
