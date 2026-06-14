@@ -33,21 +33,6 @@ const MoonIcon = () => (
   </svg>
 );
 
-const MenuIcon = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-    <line x1="3" y1="6" x2="21" y2="6" />
-    <line x1="3" y1="12" x2="21" y2="12" />
-    <line x1="3" y1="18" x2="21" y2="18" />
-  </svg>
-);
-
-const CloseIcon = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-    <line x1="18" y1="6" x2="6" y2="18" />
-    <line x1="6" y1="6" x2="18" y2="18" />
-  </svg>
-);
-
 export default function Navigation() {
   const pathname = usePathname();
   const [hovered, setHovered] = useState<string | null>(null);
@@ -62,16 +47,16 @@ export default function Navigation() {
       className="fixed top-0 left-0 right-0 z-50"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-8">
-        <nav className="mx-auto mt-4 flex max-w-fit items-center gap-1 rounded-2xl border border-border/40 bg-background/70 px-1 py-1 backdrop-blur-2xl sm:max-w-fit">
+        <nav className="mt-4 flex items-center justify-between rounded-2xl border border-border/40 bg-background/70 px-3 py-1.5 backdrop-blur-2xl sm:justify-start sm:gap-1">
           <Link
             href="/"
-            className="px-4 py-2 text-sm font-semibold tracking-tight text-foreground/80 transition-colors hover:text-foreground"
+            className="px-2 py-1.5 text-sm font-semibold tracking-tight text-foreground/80 transition-colors hover:text-foreground"
           >
             MM
           </Link>
 
-          <div className="hidden sm:contents">
-            <div className="h-5 w-px bg-border/40" />
+          <div className="hidden sm:flex sm:items-center sm:gap-1">
+            <div className="mx-1 h-5 w-px bg-border/40" />
             {links.map((link) => {
               const isActive = pathname === link.href;
               return (
@@ -103,7 +88,7 @@ export default function Navigation() {
                 </Link>
               );
             })}
-            <div className="h-5 w-px bg-border/40" />
+            <div className="mx-1 h-5 w-px bg-border/40" />
             <button
               onClick={toggleTheme}
               className="rounded-xl px-3 py-2 text-text-secondary transition-colors hover:text-foreground"
@@ -114,11 +99,15 @@ export default function Navigation() {
           </div>
 
           <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className="flex rounded-xl px-3 py-2 text-text-secondary transition-colors hover:text-foreground sm:hidden"
-            aria-label="Toggle menu"
+            onClick={() => setMobileOpen(true)}
+            className="flex rounded-xl px-2 py-2 text-text-secondary transition-colors hover:text-foreground sm:hidden"
+            aria-label="Open menu"
           >
-            {mobileOpen ? <CloseIcon /> : <MenuIcon />}
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+              <line x1="3" y1="6" x2="21" y2="6" />
+              <line x1="3" y1="12" x2="21" y2="12" />
+              <line x1="3" y1="18" x2="21" y2="18" />
+            </svg>
           </button>
         </nav>
       </div>
@@ -126,13 +115,27 @@ export default function Navigation() {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-x-0 top-0 z-40 border-b border-border/40 bg-background/80 pt-20 backdrop-blur-2xl sm:hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-50 flex flex-col bg-background/95 backdrop-blur-2xl sm:hidden"
           >
-            <div className="flex flex-col items-center gap-1 px-4 pb-6">
+            <div className="flex items-center justify-between border-b border-border/40 px-5 py-4">
+              <span className="text-sm font-semibold text-foreground">Menu</span>
+              <button
+                onClick={() => setMobileOpen(false)}
+                className="flex h-8 w-8 items-center justify-center rounded-full text-text-secondary transition-colors hover:bg-foreground/10 hover:text-foreground"
+                aria-label="Close menu"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+              </button>
+            </div>
+
+            <div className="flex flex-1 flex-col items-center justify-center gap-2 px-6">
               {links.map((link) => {
                 const isActive = pathname === link.href;
                 return (
@@ -140,23 +143,24 @@ export default function Navigation() {
                     key={link.href}
                     href={link.href}
                     onClick={() => setMobileOpen(false)}
-                    className={`w-full rounded-xl px-4 py-3 text-center text-sm font-medium transition-colors ${
+                    className={`w-full rounded-xl py-4 text-center text-lg font-medium transition-colors ${
                       isActive
                         ? "bg-foreground/10 text-foreground"
-                        : "text-text-secondary hover:text-foreground"
+                        : "text-text-secondary hover:bg-foreground/5 hover:text-foreground"
                     }`}
                   >
                     {link.label}
                   </Link>
                 );
               })}
-              <div className="mt-2 h-px w-12 bg-border/40" />
+            </div>
+
+            <div className="border-t border-border/40 px-6 py-6">
               <button
                 onClick={() => { toggleTheme(); setMobileOpen(false); }}
-                className="mt-2 flex items-center gap-2 rounded-xl px-4 py-3 text-sm font-medium text-text-secondary transition-colors hover:text-foreground"
-                aria-label="Toggle theme"
+                className="flex w-full items-center justify-center gap-3 rounded-xl py-3 text-sm font-medium text-text-secondary transition-colors hover:bg-foreground/5 hover:text-foreground"
               >
-                {theme === "dark" ? <><SunIcon /> Light Mode</> : <><MoonIcon /> Dark Mode</>}
+                {theme === "dark" ? <><SunIcon /> Switch to Light Mode</> : <><MoonIcon /> Switch to Dark Mode</>}
               </button>
             </div>
           </motion.div>
