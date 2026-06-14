@@ -1,5 +1,7 @@
 "use client";
 
+import { TechIcon } from "./TechIcons";
+
 const tools = [
   "TypeScript",
   "Supabase",
@@ -28,8 +30,9 @@ export default function TechMarquee() {
         {duplicated.map((tool, i) => (
           <span
             key={`${tool}-${i}`}
-            className="shrink-0 rounded-full border border-border/40 bg-card px-5 py-2.5 text-sm font-medium text-text-secondary whitespace-nowrap"
+            className="inline-flex shrink-0 items-center gap-2 rounded-full border border-border/40 bg-card px-5 py-2.5 text-sm font-medium text-text-secondary whitespace-nowrap"
           >
+            <TechIcon name={tool} />
             {tool}
           </span>
         ))}

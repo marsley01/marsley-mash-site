@@ -5,6 +5,8 @@ import Link from "next/link";
 import Section from "@/components/Section";
 import StatsCounter from "@/components/StatsCounter";
 import TechMarquee from "@/components/TechMarquee";
+import { TechIcon } from "@/components/TechIcons";
+import { DotsGrid, Rings, Crosses, GeometricShape, CornerAccents, WavyLines } from "@/components/VisualAnchors";
 
 const fadeUp = {
   initial: { opacity: 0, y: 40 },
@@ -59,6 +61,9 @@ export default function Home() {
   return (
     <>
       <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6">
+        <DotsGrid density="sparse" className="opacity-50" />
+        <Crosses />
+        <GeometricShape />
         <motion.div
           className="pointer-events-none absolute inset-0"
           initial={{ opacity: 0 }}
@@ -148,7 +153,10 @@ export default function Home() {
         </motion.div>
       </section>
 
-      <Section id="featured" className="bg-card/30">
+      <Section id="featured" className="relative bg-card/30">
+        <DotsGrid density="medium" className="opacity-30" />
+        <CornerAccents />
+        <Rings className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" count={2} />
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -193,7 +201,9 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section className="bg-card/30">
+      <Section className="relative bg-card/30">
+        <GeometricShape />
+        <WavyLines className="top-0 right-0" />
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -215,7 +225,8 @@ export default function Home() {
         </motion.div>
       </Section>
 
-      <Section>
+      <Section className="relative">
+        <Crosses />
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -233,8 +244,9 @@ export default function Home() {
             {skills.map((skill) => (
               <span
                 key={skill}
-                className="rounded-full border border-border/40 bg-card px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:border-accent/50"
+                className="inline-flex items-center gap-2 rounded-full border border-border/40 bg-card px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:border-accent/50"
               >
+                <TechIcon name={skill} />
                 {skill}
               </span>
             ))}
@@ -242,7 +254,9 @@ export default function Home() {
         </motion.div>
       </Section>
 
-      <Section className="bg-card/30">
+      <Section className="relative bg-card/30">
+        <DotsGrid density="sparse" className="opacity-30" />
+        <CornerAccents />
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -262,7 +276,9 @@ export default function Home() {
         </motion.div>
       </Section>
 
-      <Section>
+      <Section className="relative">
+        <Rings className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" count={2} />
+        <GeometricShape />
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}

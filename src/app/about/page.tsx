@@ -2,6 +2,8 @@
 
 import { motion } from "framer-motion";
 import Section from "@/components/Section";
+import { DotsGrid, Crosses, Rings, GeometricShape, CornerAccents } from "@/components/VisualAnchors";
+import { TechIcon } from "@/components/TechIcons";
 
 const milestones = [
   {
@@ -76,7 +78,10 @@ const skills = [
 export default function About() {
   return (
     <>
-      <section className="flex min-h-[70vh] flex-col items-center justify-center px-6 pt-28">
+      <section className="relative flex min-h-[70vh] flex-col items-center justify-center overflow-hidden px-6 pt-28">
+        <DotsGrid density="sparse" className="opacity-40" />
+        <Crosses />
+        <Rings className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" count={2} />
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -94,7 +99,9 @@ export default function About() {
         </motion.div>
       </section>
 
-      <Section className="bg-card/30">
+      <Section className="relative bg-card/30">
+        <GeometricShape />
+        <CornerAccents />
         <div className="mx-auto grid max-w-4xl gap-12 lg:grid-cols-2">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -142,7 +149,8 @@ export default function About() {
         </div>
       </Section>
 
-      <Section>
+      <Section className="relative">
+        <DotsGrid density="medium" className="opacity-30" />
         <div className="mx-auto max-w-3xl">
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
@@ -165,8 +173,9 @@ export default function About() {
                   ease: [0.16, 1, 0.3, 1],
                 }}
                 viewport={{ once: true }}
-                className="rounded-full border border-border/40 bg-card px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:border-accent/50"
+                className="inline-flex items-center gap-2 rounded-full border border-border/40 bg-card px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:border-accent/50"
               >
+                <TechIcon name={skill} />
                 {skill}
               </motion.span>
             ))}
@@ -174,7 +183,9 @@ export default function About() {
         </div>
       </Section>
 
-      <Section className="bg-card/30">
+      <Section className="relative bg-card/30">
+        <Rings className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" count={2} />
+        <Crosses />
         <div className="mx-auto max-w-3xl">
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
@@ -219,7 +230,9 @@ export default function About() {
         </div>
       </Section>
 
-      <Section>
+      <Section className="relative">
+        <GeometricShape />
+        <CornerAccents />
         <div className="mx-auto max-w-3xl">
           <motion.h2
             initial={{ opacity: 0, y: 30 }}

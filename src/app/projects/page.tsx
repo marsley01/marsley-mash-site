@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Section from "@/components/Section";
+import { DotsGrid, Crosses, Rings, GeometricShape, CornerAccents } from "@/components/VisualAnchors";
 
 interface Project {
   title: string;
@@ -72,7 +73,10 @@ const projects: Project[] = [
 export default function Projects() {
   return (
     <>
-      <section className="flex min-h-[50vh] flex-col items-center justify-center px-6 pt-28">
+      <section className="relative flex min-h-[50vh] flex-col items-center justify-center overflow-hidden px-6 pt-28">
+        <DotsGrid density="sparse" className="opacity-40" />
+        <Crosses />
+        <Rings className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" count={2} />
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -89,7 +93,10 @@ export default function Projects() {
         </motion.div>
       </section>
 
-      <Section>
+      <Section className="relative">
+        <GeometricShape />
+        <CornerAccents />
+        <DotsGrid density="medium" className="opacity-20" />
         <div className="grid gap-6 sm:grid-cols-2">
           {projects.map((project, i) => (
             <motion.div
