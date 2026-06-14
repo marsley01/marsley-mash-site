@@ -1,0 +1,343 @@
+"use client";
+
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { TechIcon } from "./TechIcons";
+import type { ReactNode } from "react";
+
+export interface ProjectData {
+  title: string;
+  subtitle: string;
+  description: string;
+  accentColor: string;
+  image: ReactNode;
+  resultBadge: string;
+  techStack: string[];
+  ctaLabel: string;
+  ctaHref: string;
+}
+
+export function ProjectPreviewMunchify() {
+  return (
+    <svg viewBox="0 0 200 160" className="h-full w-full">
+      <rect width="200" height="160" rx="12" fill="#1a1a1a" />
+      <rect x="20" y="20" width="40" height="40" rx="8" fill="#10b981" opacity="0.3" />
+      <rect x="68" y="20" width="60" height="40" rx="8" fill="#10b981" opacity="0.15" />
+      <rect x="20" y="68" width="60" height="40" rx="8" fill="#10b981" opacity="0.2" />
+      <rect x="88" y="68" width="40" height="40" rx="8" fill="#059669" opacity="0.25" />
+      <circle cx="140" cy="40" r="20" fill="#10b981" opacity="0.12" />
+      <circle cx="140" cy="40" r="10" fill="#10b981" opacity="0.2" />
+      <circle cx="140" cy="40" r="4" fill="#10b981" />
+      <path d="M60 130 Q100 110 140 130" stroke="#10b981" strokeWidth="2" fill="none" opacity="0.3" />
+      <path d="M40 140 Q100 120 160 140" stroke="#10b981" strokeWidth="1.5" fill="none" opacity="0.2" />
+    </svg>
+  );
+}
+
+export function ProjectPreviewCyzora() {
+  return (
+    <svg viewBox="0 0 200 160" className="h-full w-full">
+      <rect width="200" height="160" rx="12" fill="#1a1a1a" />
+      <rect x="30" y="25" width="100" height="60" rx="6" fill="#3b82f6" opacity="0.15" />
+      <rect x="30" y="25" width="100" height="8" rx="2" fill="#3b82f6" opacity="0.3" />
+      <rect x="36" y="40" width="40" height="4" rx="2" fill="#6366f1" opacity="0.3" />
+      <rect x="36" y="50" width="60" height="4" rx="2" fill="#6366f1" opacity="0.2" />
+      <rect x="36" y="60" width="50" height="4" rx="2" fill="#6366f1" opacity="0.15" />
+      <rect x="36" y="70" width="70" height="4" rx="2" fill="#6366f1" opacity="0.1" />
+      <rect x="150" y="30" width="20" height="50" rx="4" fill="#3b82f6" opacity="0.12" />
+      <rect x="154" y="36" width="12" height="12" rx="3" fill="#3b82f6" opacity="0.2" />
+      <rect x="154" y="54" width="12" height="6" rx="2" fill="#3b82f6" opacity="0.15" />
+      <rect x="154" y="64" width="12" height="6" rx="2" fill="#3b82f6" opacity="0.1" />
+      <circle cx="60" cy="110" r="6" fill="#3b82f6" opacity="0.2" />
+      <circle cx="100" cy="110" r="6" fill="#6366f1" opacity="0.2" />
+      <circle cx="140" cy="110" r="6" fill="#3b82f6" opacity="0.2" />
+      <line x1="66" y1="110" x2="94" y2="110" stroke="#3b82f6" strokeWidth="1" opacity="0.15" />
+      <line x1="106" y1="110" x2="134" y2="110" stroke="#6366f1" strokeWidth="1" opacity="0.15" />
+    </svg>
+  );
+}
+
+export function ProjectPreviewEdyfra() {
+  return (
+    <svg viewBox="0 0 200 160" className="h-full w-full">
+      <rect width="200" height="160" rx="12" fill="#1a1a1a" />
+      <rect x="30" y="20" width="80" height="8" rx="4" fill="#8b5cf6" opacity="0.3" />
+      <rect x="30" y="36" width="60" height="6" rx="3" fill="#7c3aed" opacity="0.2" />
+      <rect x="30" y="50" width="70" height="6" rx="3" fill="#8b5cf6" opacity="0.15" />
+      <rect x="30" y="64" width="50" height="6" rx="3" fill="#7c3aed" opacity="0.1" />
+      <rect x="140" y="20" width="30" height="30" rx="6" fill="#8b5cf6" opacity="0.15" />
+      <rect x="145" y="25" width="20" height="4" rx="2" fill="#8b5cf6" opacity="0.3" />
+      <rect x="145" y="33" width="12" height="4" rx="2" fill="#8b5cf6" opacity="0.2" />
+      <path d="M30 110 L50 90 L70 110 L90 85 L110 110" stroke="#8b5cf6" strokeWidth="2" fill="none" opacity="0.3" />
+      <path d="M30 125 L50 105 L70 125 L90 100 L110 125" stroke="#7c3aed" strokeWidth="1.5" fill="none" opacity="0.2" />
+      <circle cx="40" cy="140" r="3" fill="#8b5cf6" opacity="0.3" />
+      <circle cx="60" cy="140" r="3" fill="#7c3aed" opacity="0.2" />
+      <circle cx="80" cy="140" r="3" fill="#8b5cf6" opacity="0.15" />
+      <circle cx="100" cy="140" r="3" fill="#7c3aed" opacity="0.1" />
+    </svg>
+  );
+}
+
+export function ProjectPreviewTrivo() {
+  return (
+    <svg viewBox="0 0 200 160" className="h-full w-full">
+      <rect width="200" height="160" rx="12" fill="#1a1a1a" />
+      <rect x="35" y="25" width="90" height="60" rx="8" fill="#f97316" opacity="0.12" />
+      <rect x="45" y="35" width="30" height="30" rx="4" fill="#f97316" opacity="0.2" />
+      <rect x="82" y="35" width="30" height="12" rx="3" fill="#ef4444" opacity="0.2" />
+      <rect x="82" y="53" width="30" height="12" rx="3" fill="#ef4444" opacity="0.15" />
+      <rect x="45" y="72" width="70" height="3" rx="1.5" fill="#f97316" opacity="0.15" />
+      <rect x="45" y="79" width="50" height="3" rx="1.5" fill="#f97316" opacity="0.1" />
+      <circle cx="160" cy="30" r="15" fill="#f97316" opacity="0.1" />
+      <circle cx="160" cy="30" r="8" fill="#f97316" opacity="0.15" />
+      <circle cx="160" cy="30" r="3" fill="#f97316" />
+      <rect x="35" y="105" width="16" height="16" rx="3" fill="#f97316" opacity="0.2" />
+      <rect x="58" y="105" width="16" height="16" rx="3" fill="#ef4444" opacity="0.15" />
+      <rect x="81" y="105" width="16" height="16" rx="3" fill="#f97316" opacity="0.1" />
+      <rect x="104" y="105" width="16" height="16" rx="3" fill="#ef4444" opacity="0.08" />
+    </svg>
+  );
+}
+
+export function ProjectPreviewBelloria() {
+  return (
+    <svg viewBox="0 0 200 160" className="h-full w-full">
+      <rect width="200" height="160" rx="12" fill="#1a1a1a" />
+      <circle cx="100" cy="50" r="28" fill="#ec4899" opacity="0.12" />
+      <circle cx="100" cy="50" r="18" fill="#f43f5e" opacity="0.15" />
+      <circle cx="100" cy="50" r="8" fill="#ec4899" opacity="0.25" />
+      <circle cx="100" cy="50" r="3" fill="#f43f5e" />
+      <rect x="50" y="95" width="40" height="6" rx="3" fill="#ec4899" opacity="0.3" />
+      <rect x="50" y="107" width="30" height="4" rx="2" fill="#f43f5e" opacity="0.2" />
+      <rect x="50" y="117" width="35" height="4" rx="2" fill="#ec4899" opacity="0.15" />
+      <rect x="120" y="95" width="30" height="30" rx="6" fill="#ec4899" opacity="0.1" />
+      <circle cx="142" cy="105" r="8" fill="#f43f5e" opacity="0.12" />
+      <circle cx="142" cy="105" r="4" fill="#ec4899" opacity="0.15" />
+    </svg>
+  );
+}
+
+export function ProjectPreviewInshot() {
+  return (
+    <svg viewBox="0 0 200 160" className="h-full w-full">
+      <rect width="200" height="160" rx="12" fill="#1a1a1a" />
+      <rect x="30" y="25" width="110" height="50" rx="6" fill="#06b6d4" opacity="0.12" />
+      <rect x="38" y="33" width="40" height="8" rx="4" fill="#06b6d4" opacity="0.3" />
+      <rect x="38" y="47" width="60" height="6" rx="3" fill="#3b82f6" opacity="0.2" />
+      <rect x="38" y="58" width="50" height="4" rx="2" fill="#06b6d4" opacity="0.15" />
+      <rect x="155" y="35" width="15" height="30" rx="4" fill="#06b6d4" opacity="0.15" />
+      <circle cx="100" cy="110" r="20" fill="#06b6d4" opacity="0.1" />
+      <circle cx="100" cy="110" r="12" fill="#3b82f6" opacity="0.12" />
+      <circle cx="100" cy="110" r="5" fill="#06b6d4" opacity="0.2" />
+      <rect x="45" y="130" width="15" height="6" rx="3" fill="#06b6d4" opacity="0.15" />
+      <rect x="68" y="130" width="15" height="6" rx="3" fill="#3b82f6" opacity="0.12" />
+      <rect x="91" y="130" width="15" height="6" rx="3" fill="#06b6d4" opacity="0.1" />
+      <rect x="114" y="130" width="15" height="6" rx="3" fill="#3b82f6" opacity="0.08" />
+    </svg>
+  );
+}
+
+export function ProjectPreviewWhatsApp() {
+  return (
+    <svg viewBox="0 0 200 160" className="h-full w-full">
+      <rect width="200" height="160" rx="12" fill="#1a1a1a" />
+      <rect x="25" y="20" width="80" height="12" rx="6" fill="#22c55e" opacity="0.25" />
+      <rect x="25" y="40" width="70" height="8" rx="4" fill="#16a34a" opacity="0.2" />
+      <rect x="25" y="56" width="90" height="8" rx="4" fill="#22c55e" opacity="0.15" />
+      <rect x="25" y="72" width="60" height="8" rx="4" fill="#16a34a" opacity="0.1" />
+      <rect x="130" y="20" width="45" height="60" rx="8" fill="#22c55e" opacity="0.1" />
+      <rect x="138" y="28" width="28" height="8" rx="4" fill="#22c55e" opacity="0.2" />
+      <rect x="138" y="42" width="28" height="4" rx="2" fill="#16a34a" opacity="0.15" />
+      <rect x="138" y="52" width="20" height="4" rx="2" fill="#22c55e" opacity="0.12" />
+      <rect x="138" y="62" width="24" height="4" rx="2" fill="#16a34a" opacity="0.1" />
+      <circle cx="50" cy="115" r="8" fill="#22c55e" opacity="0.15" />
+      <circle cx="75" cy="125" r="6" fill="#16a34a" opacity="0.12" />
+      <circle cx="100" cy="115" r="4" fill="#22c55e" opacity="0.1" />
+    </svg>
+  );
+}
+
+export function ProjectPreviewMoreSaaS() {
+  return (
+    <svg viewBox="0 0 200 160" className="h-full w-full">
+      <rect width="200" height="160" rx="12" fill="#1a1a1a" />
+      <rect x="40" y="30" width="80" height="40" rx="6" fill="#71717a" opacity="0.15" />
+      <rect x="48" y="38" width="30" height="6" rx="3" fill="#a1a1aa" opacity="0.3" />
+      <rect x="48" y="50" width="50" height="4" rx="2" fill="#a1a1aa" opacity="0.2" />
+      <rect x="48" y="58" width="35" height="4" rx="2" fill="#a1a1aa" opacity="0.15" />
+      <circle cx="160" cy="50" r="18" fill="#71717a" opacity="0.1" />
+      <circle cx="160" cy="50" r="8" fill="#a1a1aa" opacity="0.15" />
+      <circle cx="160" cy="50" r="3" fill="#a1a1aa" />
+      <rect x="40" y="95" width="16" height="16" rx="3" fill="#71717a" opacity="0.2" />
+      <rect x="64" y="95" width="16" height="16" rx="3" fill="#a1a1aa" opacity="0.15" />
+      <rect x="88" y="95" width="16" height="16" rx="3" fill="#71717a" opacity="0.12" />
+      <rect x="112" y="95" width="16" height="16" rx="3" fill="#a1a1aa" opacity="0.1" />
+    </svg>
+  );
+}
+
+export const featuredProjects: ProjectData[] = [
+  {
+    title: "Munchify",
+    subtitle: "Food delivery for campus life",
+    description: "A food delivery platform focused on student convenience and speed, revolutionizing campus food access.",
+    accentColor: "from-emerald-500 to-teal-600",
+    image: <ProjectPreviewMunchify />,
+    resultBadge: "30,000+ orders fulfilled",
+    techStack: ["TypeScript", "React", "Node.js", "Python"],
+    ctaLabel: "View Case Study",
+    ctaHref: "/projects",
+  },
+  {
+    title: "Cyzora",
+    subtitle: "Web agency for modern brands",
+    description: "A web agency building and hosting framework-based websites for businesses and creators.",
+    accentColor: "from-blue-500 to-indigo-600",
+    image: <ProjectPreviewCyzora />,
+    resultBadge: "10+ websites delivered",
+    techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Git"],
+    ctaLabel: "Visit Site",
+    ctaHref: "/projects",
+  },
+  {
+    title: "Edyfra",
+    subtitle: "Edtech bridging holiday learning gaps",
+    description: "An edtech platform that monitors student performance during holidays and connects tutors with students.",
+    accentColor: "from-violet-500 to-purple-600",
+    image: <ProjectPreviewEdyfra />,
+    resultBadge: "70+ active verified users",
+    techStack: ["Next.js", "Node.js", "PostgreSQL", "TypeScript"],
+    ctaLabel: "View Case Study",
+    ctaHref: "/projects",
+  },
+  {
+    title: "Trivo Kenya",
+    subtitle: "Premium tech gadgets store",
+    description: "An online store selling premium tech gadgets and accessories for the modern consumer.",
+    accentColor: "from-orange-500 to-red-600",
+    image: <ProjectPreviewTrivo />,
+    resultBadge: "300+ products listed",
+    techStack: ["React", "Tailwind CSS", "Node.js", "Git"],
+    ctaLabel: "Visit Store",
+    ctaHref: "/projects",
+  },
+];
+
+export const allProjects: ProjectData[] = [
+  ...featuredProjects,
+  {
+    title: "Belloria Beauty",
+    subtitle: "Cosmetic brand showcase",
+    description: "A cosmetic brand showcase site featuring beauty products with a premium, elegant design.",
+    accentColor: "from-pink-500 to-rose-600",
+    image: <ProjectPreviewBelloria />,
+    resultBadge: "Beauty line showcased",
+    techStack: ["React", "TypeScript", "Tailwind CSS", "Figma"],
+    ctaLabel: "View Site",
+    ctaHref: "/projects",
+  },
+  {
+    title: "Inshot AI",
+    subtitle: "AI-powered shopping assistant",
+    description: "An AI-powered shop assistant tool that helps customers browse products and get recommendations.",
+    accentColor: "from-cyan-500 to-blue-600",
+    image: <ProjectPreviewInshot />,
+    resultBadge: "AI-driven recommendations",
+    techStack: ["Python", "Node.js", "React", "TypeScript"],
+    ctaLabel: "Learn More",
+    ctaHref: "/projects",
+  },
+  {
+    title: "WhatsApp Bot",
+    subtitle: "24/7 automated customer service",
+    description: "An automated customer service bot for WhatsApp that handles inquiries and shows product catalogs.",
+    accentColor: "from-green-500 to-emerald-600",
+    image: <ProjectPreviewWhatsApp />,
+    resultBadge: "24/7 automated support",
+    techStack: ["Node.js", "Python", "TypeScript", "Git"],
+    ctaLabel: "View Details",
+    ctaHref: "/projects",
+  },
+  {
+    title: "More SaaS",
+    subtitle: "Next-gen tools in development",
+    description: "Various SaaS products and tools in development, focused on solving real problems with clean technology.",
+    accentColor: "from-gray-500 to-zinc-600",
+    image: <ProjectPreviewMoreSaaS />,
+    resultBadge: "New products shipping",
+    techStack: ["TypeScript", "Next.js", "PostgreSQL", "Tailwind CSS"],
+    ctaLabel: "Stay Tuned",
+    ctaHref: "/projects",
+  },
+];
+
+interface ProjectCardProps {
+  project: ProjectData;
+  index: number;
+}
+
+export default function ProjectCard({ project, index }: ProjectCardProps) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{
+        duration: 0.6,
+        delay: index * 0.1,
+        ease: [0.16, 1, 0.3, 1],
+      }}
+      viewport={{ once: true, margin: "-50px" }}
+      whileHover={{ y: -6 }}
+      className="group flex flex-col overflow-hidden rounded-2xl border border-border/40 bg-card transition-all duration-300 hover:border-border/80 hover:shadow-lg hover:shadow-black/10"
+    >
+      <div className={`h-1.5 w-full bg-gradient-to-r shrink-0 ${project.accentColor}`} />
+
+      <div className="flex flex-col gap-4 p-5 sm:flex-row sm:gap-5 sm:p-6">
+        <div className="relative aspect-[5/4] w-full shrink-0 overflow-hidden rounded-xl sm:w-[180px] sm:aspect-auto">
+          <div className="absolute inset-0 bg-gradient-to-br from-black/20 to-transparent" />
+          {project.image}
+        </div>
+
+        <div className="flex min-w-0 flex-1 flex-col gap-3">
+          <div>
+            <h3 className="text-xl font-bold tracking-tight text-foreground">
+              {project.title}
+            </h3>
+            <p className="mt-0.5 text-sm text-text-secondary">
+              {project.subtitle}
+            </p>
+          </div>
+
+          <span className="inline-flex w-fit items-center gap-1.5 rounded-md bg-card-secondary px-2.5 py-1 text-xs font-semibold text-text-secondary">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor" className="text-accent">
+              <circle cx="5" cy="5" r="3" />
+            </svg>
+            {project.resultBadge}
+          </span>
+
+          <div className="flex items-center gap-2">
+            {project.techStack.map((tech) => (
+              <span
+                key={tech}
+                className="flex h-7 w-7 items-center justify-center rounded-full border border-border/40 bg-card-secondary/50"
+                title={tech}
+              >
+                <TechIcon name={tech} />
+              </span>
+            ))}
+          </div>
+
+          <Link
+            href={project.ctaHref}
+            className="mt-auto inline-flex w-fit items-center gap-1.5 rounded-full bg-accent px-4 py-1.5 text-xs font-semibold text-white transition-all hover:opacity-90 active:scale-[0.97]"
+          >
+            {project.ctaLabel}
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M4.5 2.5L8 6L4.5 9.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </Link>
+        </div>
+      </div>
+    </motion.div>
+  );
+}

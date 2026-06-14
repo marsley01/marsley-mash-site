@@ -16,7 +16,7 @@ const milestones = [
     year: "2024",
     title: "Launched Munchify",
     description:
-      "Built and launched a food delivery platform in Maseno, serving 5,000+ orders and solving real student needs.",
+      "Built and launched a food delivery platform in Maseno, serving 30,000+ orders and solving real student needs.",
   },
   {
     year: "2024",

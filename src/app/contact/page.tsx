@@ -18,8 +18,8 @@ const socials = [
   },
   {
     name: "Email",
-    handle: "marsleymash@gmail.com",
-    url: "mailto:marsleymash@gmail.com",
+    handle: "mashmarsley@gmail.com",
+    url: "mailto:mashmarsley@gmail.com",
   },
   {
     name: "Phone",

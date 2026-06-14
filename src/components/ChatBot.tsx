@@ -15,7 +15,7 @@ const faqResponses: Record<string, string> = {
   "who is marsley mash":
     "Marsley Mash is a Gen Z entrepreneur and web developer based in Nairobi, Kenya. He's the founder of Munchify, Cyzora, Edyfra, Trivo Kenya, Belloria Beauty, Inshot AI, and more!",
   "what is munchify":
-    "Munchify is a food delivery platform focused on student convenience and speed. It fulfilled 5,000+ orders in one semester at Maseno University.",
+    "Munchify is a food delivery platform focused on student convenience and speed. It fulfilled 30,000+ orders in one semester at Maseno University.",
   "what is cyzora":
     "Cyzora is a web agency that builds and hosts framework-based websites for businesses and creators.",
   "what is edyfra":
@@ -29,8 +29,8 @@ const faqResponses: Record<string, string> = {
   "whatsapp bot":
     "The WhatsApp Bot runs in the background to handle customer service inquiries via WhatsApp. It can show catalogs, answer product questions, and act as a shop assistant.",
   contact:
-    "You can reach Marsley via email at marsleymash@gmail.com or on Instagram @marlsey.official. You can also use the contact form on this site!",
-  email: "marsleymash@gmail.com",
+    "You can reach Marsley via email at mashmarsley@gmail.com or on Instagram @marlsey.official. You can also use the contact form on this site!",
+  email: "mashmarsley@gmail.com",
   instagram: "@marlsey.official on Instagram",
   skills:
     "Mash specializes in Next.js, React, TypeScript, Tailwind CSS, UI/UX design, AI integrations, and full-stack web development.",

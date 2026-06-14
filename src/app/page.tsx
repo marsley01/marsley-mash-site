@@ -7,6 +7,7 @@ import StatsCounter from "@/components/StatsCounter";
 import TechMarquee from "@/components/TechMarquee";
 import { TechIcon } from "@/components/TechIcons";
 import { DotsGrid, Rings, Crosses, GeometricShape, CornerAccents, WavyLines } from "@/components/VisualAnchors";
+import ProjectCard, { featuredProjects } from "@/components/ProjectCard";
 
 const fadeUp = {
   initial: { opacity: 0, y: 40 },
@@ -19,31 +20,7 @@ const stagger = {
   },
 };
 
-const featuredProjects = [
-  {
-    title: "Munchify",
-    description:
-      "Food delivery platform that fulfilled 5,000+ orders in one semester at Maseno University.",
-    gradient: "from-emerald-500 to-teal-600",
-  },
-  {
-    title: "Cyzora",
-    description:
-      "Web agency building and hosting framework-based websites for businesses.",
-    gradient: "from-blue-500 to-indigo-600",
-  },
-  {
-    title: "Edyfra",
-    description:
-      "Edtech platform for holiday performance monitoring, tutor-student connection & resource sharing.",
-    gradient: "from-violet-500 to-purple-600",
-  },
-  {
-    title: "Trivo Kenya",
-    description: "Online store selling premium tech gadgets and accessories.",
-    gradient: "from-orange-500 to-red-600",
-  },
-];
+// featuredProjects imported from ProjectCard component
 
 const skills = [
   "Next.js / React",
@@ -174,29 +151,7 @@ export default function Home() {
 
         <div className="grid gap-6 sm:grid-cols-2">
           {featuredProjects.map((project, i) => (
-            <motion.div
-              key={project.title}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.6,
-                delay: i * 0.1,
-                ease: [0.16, 1, 0.3, 1],
-              }}
-              viewport={{ once: true, margin: "-50px" }}
-              whileHover={{ y: -4 }}
-              className="group cursor-pointer rounded-2xl border border-border/40 bg-card p-6 transition-colors hover:border-border"
-            >
-              <div
-                className={`mb-4 h-2 w-12 rounded-full bg-gradient-to-r ${project.gradient}`}
-              />
-              <h3 className="text-xl font-semibold text-foreground">
-                {project.title}
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-text-secondary">
-                {project.description}
-              </p>
-            </motion.div>
+            <ProjectCard key={project.title} project={project} index={i} />
           ))}
         </div>
       </Section>
@@ -218,7 +173,7 @@ export default function Home() {
             A snapshot of the impact so far.
           </p>
           <div className="mt-12 grid gap-10 sm:grid-cols-3">
-            <StatsCounter target={5000} suffix="+" label="Orders Delivered" />
+            <StatsCounter target={30000} suffix="+" label="Orders Delivered" />
             <StatsCounter target={8} suffix="+" label="Projects Built" />
             <StatsCounter target={3} suffix="+" label="Years Building" />
           </div>
