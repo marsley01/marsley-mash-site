@@ -41,6 +41,18 @@ const featuredProjects = [
   },
 ];
 
+const skills = [
+  "Next.js / React",
+  "TypeScript",
+  "Tailwind CSS",
+  "Node.js",
+  "Python",
+  "AI / LLM Integration",
+  "UI/UX Design",
+  "Databases (SQL / NoSQL)",
+  "Git / GitHub",
+];
+
 export default function Home() {
   return (
     <>
@@ -66,7 +78,7 @@ export default function Home() {
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           >
             <span className="inline-block rounded-full border border-border/40 bg-card/50 px-4 py-1.5 text-xs font-medium text-text-secondary backdrop-blur-xl">
-              Gen Z Entrepreneur &middot; Web Developer &middot; Nairobi
+              Web Developer &middot; Software Developer &middot; Nairobi
             </span>
           </motion.div>
 
@@ -177,6 +189,33 @@ export default function Home() {
             </motion.div>
           ))}
         </div>
+      </Section>
+
+      <Section>
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          viewport={{ once: true, margin: "-100px" }}
+          className="text-center"
+        >
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+            Skills & Technologies
+          </h2>
+          <p className="mt-4 text-text-secondary">
+            Tools I use to bring ideas to life.
+          </p>
+          <div className="mt-10 flex flex-wrap justify-center gap-3">
+            {skills.map((skill) => (
+              <span
+                key={skill}
+                className="rounded-full border border-border/40 bg-card px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:border-accent/50"
+              >
+                {skill}
+              </span>
+            ))}
+          </div>
+        </motion.div>
       </Section>
 
       <Section>

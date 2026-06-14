@@ -11,14 +11,19 @@ const socials = [
     url: "https://instagram.com/marlsey.official",
   },
   {
+    name: "GitHub",
+    handle: "marsley01",
+    url: "https://github.com/marsley01",
+  },
+  {
     name: "Email",
     handle: "marsleymash@gmail.com",
     url: "mailto:marsleymash@gmail.com",
   },
   {
-    name: "Podcast",
-    handle: "@404realtalkpodcast",
-    url: "https://instagram.com/404realtalkpodcast",
+    name: "Phone",
+    handle: "+254 740 610 772",
+    url: "tel:+254740610772",
   },
 ];
 
@@ -152,7 +157,7 @@ export default function Contact() {
             viewport={{ once: true }}
           >
             <h2 className="text-2xl font-bold tracking-tight">
-              Find Me Online
+              Connect With Me
             </h2>
             <div className="mt-8 space-y-4">
               {socials.map((social) => (
@@ -171,9 +176,7 @@ export default function Contact() {
                       {social.handle}
                     </p>
                   </div>
-                  <span className="text-text-secondary transition-colors group-hover:text-foreground">
-                    &rarr;
-                  </span>
+                  <span className="text-text-secondary">&rarr;</span>
                 </a>
               ))}
             </div>

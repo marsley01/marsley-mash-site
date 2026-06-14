@@ -38,7 +38,7 @@ const milestones = [
     year: "2026",
     title: "Building the Future",
     description:
-      "Continuing to innovate with SaaS products, AI integrations, and digital solutions that empower creators and businesses.",
+      "Building SaaS products, growing Cyzora, and integrating AI into practical tools. Always learning, always shipping.",
   },
 ];
 
@@ -61,6 +61,18 @@ const values = [
   },
 ];
 
+const skills = [
+  "Next.js / React",
+  "TypeScript",
+  "Tailwind CSS",
+  "Node.js",
+  "Python",
+  "AI / LLM Integration",
+  "UI/UX Design",
+  "Databases (SQL / NoSQL)",
+  "Git / GitHub",
+];
+
 export default function About() {
   return (
     <>
@@ -75,12 +87,92 @@ export default function About() {
             About Me
           </h1>
           <p className="mt-6 text-lg leading-relaxed text-text-secondary">
-            I&apos;m Marsley Mash — a Gen Z entrepreneur, web developer, and
-            founder based in Nairobi, Kenya. I build brands, platforms, and
-            tools that solve real problems.
+            I&apos;m Marsley Mash — a web & software developer based in Nairobi,
+            Kenya. I build brands, platforms, and tools that solve real
+            problems.
           </p>
         </motion.div>
       </section>
+
+      <Section className="bg-card/30">
+        <div className="mx-auto grid max-w-4xl gap-12 lg:grid-cols-2">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-2xl font-bold tracking-tight">Background</h2>
+            <p className="mt-4 leading-relaxed text-text-secondary">
+              I&apos;m an IT student at JKUAT and a self-taught developer who
+              learns by building. What started as curiosity turned into a
+              full-blown passion for creating digital products that make a
+              difference.
+            </p>
+            <p className="mt-4 leading-relaxed text-text-secondary">
+              Today I run multiple ventures including Munchify, Cyzora, Edyfra,
+              and I&apos;m constantly exploring how AI and software can solve
+              everyday problems.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-2xl font-bold tracking-tight">
+              Current Focus
+            </h2>
+            <ul className="mt-4 space-y-4">
+              {[
+                "Building and scaling SaaS products",
+                "Growing Cyzora — my web development agency",
+                "Integrating AI into practical tools and bots",
+                "Exploring new tech and shipping projects",
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-3">
+                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                  <span className="text-text-secondary">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        </div>
+      </Section>
+
+      <Section>
+        <div className="mx-auto max-w-3xl">
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            viewport={{ once: true }}
+            className="mb-16 text-center text-3xl font-bold tracking-tight"
+          >
+            Skills
+          </motion.h2>
+          <div className="flex flex-wrap justify-center gap-3">
+            {skills.map((skill, i) => (
+              <motion.span
+                key={skill}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.4,
+                  delay: i * 0.05,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+                viewport={{ once: true }}
+                className="rounded-full border border-border/40 bg-card px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:border-accent/50"
+              >
+                {skill}
+              </motion.span>
+            ))}
+          </div>
+        </div>
+      </Section>
 
       <Section className="bg-card/30">
         <div className="mx-auto max-w-3xl">

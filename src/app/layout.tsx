@@ -4,6 +4,7 @@ import "./globals.css";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ChatBot from "@/components/ChatBot";
+import ThemeProvider from "@/components/ThemeProvider";
 
 const inter = Inter({
   variable: "--font-geist-sans",
@@ -12,25 +13,23 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Marsley Mash — Builder of Brands & Digital Experiences",
+  title: "Marsley Mash — Web & Software Developer",
   description:
-    "Marsley Mash is a Gen Z entrepreneur, web developer, and founder of Munchify, Cyzora, Edyfra, and more. Building the future, one project at a time.",
+    "Marsley Mash is a web and software developer, founder of Munchify, Cyzora, Edyfra, and more. Building the future, one project at a time.",
   keywords: [
     "Marsley Mash",
     "Munchify",
     "Cyzora",
     "Edyfra",
     "web developer",
+    "software developer",
     "Kenya",
     "entrepreneur",
-    "Trivo Kenya",
-    "Belloria Beauty",
-    "Inshot AI",
   ],
   openGraph: {
     title: "Marsley Mash",
     description:
-      "Builder of brands & digital experiences. Founder of Munchify, Cyzora, Edyfra & more.",
+      "Web & software developer. Founder of Munchify, Cyzora, Edyfra & more.",
     type: "website",
   },
 };
@@ -43,13 +42,16 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} h-full antialiased`}
+      className={`${inter.variable} dark h-full antialiased`}
+      suppressHydrationWarning
     >
-      <body className="min-h-full bg-background font-sans text-foreground">
-        <Navigation />
-        <main className="flex-1">{children}</main>
-        <Footer />
-        <ChatBot />
+      <body className="min-h-full bg-background font-sans text-foreground transition-colors duration-300">
+        <ThemeProvider>
+          <Navigation />
+          <main className="flex-1">{children}</main>
+          <Footer />
+          <ChatBot />
+        </ThemeProvider>
       </body>
     </html>
   );
