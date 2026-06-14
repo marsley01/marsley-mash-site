@@ -49,21 +49,31 @@ export default function ChatBot() {
         body: JSON.stringify({ messages: updatedMessages }),
       });
 
-      if (!res.ok) throw new Error("API error");
+      let errorMsg = "Something went wrong.";
+      if (!res.ok) {
+        try {
+          const errData = await res.json();
+          if (res.status === 429) {
+            errorMsg = "Whoa, slow down! Please wait a moment before sending another message.";
+          } else {
+            errorMsg = errData?.error || `Server error (${res.status})`;
+          }
+        } catch {
+          errorMsg = `Server error (${res.status})`;
+        }
+        throw new Error(errorMsg);
+      }
 
       const data = await res.json();
       setMessages((prev) => [
         ...prev,
         { role: "bot", content: data.response },
       ]);
-    } catch {
+    } catch (e) {
+      const msg = e instanceof Error ? e.message : "Please try again later.";
       setMessages((prev) => [
         ...prev,
-        {
-          role: "bot",
-          content:
-            "Sorry, I'm having trouble connecting right now. Please try again later.",
-        },
+        { role: "bot", content: `Sorry, I'm having trouble: ${msg}` },
       ]);
     } finally {
       setLoading(false);
@@ -98,7 +108,7 @@ export default function ChatBot() {
                     Mash Assistant
                   </p>
                   <p className="text-xs text-text-secondary">
-                    {loading ? "Thinking..." : "Powered by Gemini"}
+                    {loading ? "Thinking..." : "Online"}
                   </p>
                 </div>
               </div>

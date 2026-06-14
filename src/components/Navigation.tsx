@@ -47,16 +47,15 @@ export default function Navigation() {
       className="fixed top-0 left-0 right-0 z-50"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-8">
-        <nav className="mt-4 flex items-center justify-between rounded-2xl border border-border/40 bg-background/70 px-3 py-1.5 backdrop-blur-2xl sm:justify-start sm:gap-1">
-          <Link
-            href="/"
-            className="px-2 py-1.5 text-sm font-semibold tracking-tight text-foreground/80 transition-colors hover:text-foreground"
-          >
-            MM
-          </Link>
-
-          <div className="hidden sm:flex sm:items-center sm:gap-1">
-            <div className="mx-1 h-5 w-px bg-border/40" />
+        <div className="hidden sm:block">
+          <nav className="mx-auto mt-4 flex w-fit items-center gap-1 rounded-2xl border border-border/40 bg-background/70 px-1 py-1 backdrop-blur-2xl">
+            <Link
+              href="/"
+              className="px-4 py-2 text-sm font-semibold tracking-tight text-foreground/80 transition-colors hover:text-foreground"
+            >
+              MM
+            </Link>
+            <div className="h-5 w-px bg-border/40" />
             {links.map((link) => {
               const isActive = pathname === link.href;
               return (
@@ -88,7 +87,7 @@ export default function Navigation() {
                 </Link>
               );
             })}
-            <div className="mx-1 h-5 w-px bg-border/40" />
+            <div className="h-5 w-px bg-border/40" />
             <button
               onClick={toggleTheme}
               className="rounded-xl px-3 py-2 text-text-secondary transition-colors hover:text-foreground"
@@ -96,20 +95,30 @@ export default function Navigation() {
             >
               {theme === "dark" ? <SunIcon /> : <MoonIcon />}
             </button>
-          </div>
+          </nav>
+        </div>
 
-          <button
-            onClick={() => setMobileOpen(true)}
-            className="flex rounded-xl px-2 py-2 text-text-secondary transition-colors hover:text-foreground sm:hidden"
-            aria-label="Open menu"
-          >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-              <line x1="3" y1="6" x2="21" y2="6" />
-              <line x1="3" y1="12" x2="21" y2="12" />
-              <line x1="3" y1="18" x2="21" y2="18" />
-            </svg>
-          </button>
-        </nav>
+        <div className="sm:hidden">
+          <nav className="mt-4 flex items-center justify-between rounded-2xl border border-border/40 bg-background/70 px-3 py-2 backdrop-blur-2xl">
+            <Link
+              href="/"
+              className="px-1 py-1 text-sm font-semibold tracking-tight text-foreground/80 transition-colors hover:text-foreground"
+            >
+              MM
+            </Link>
+            <button
+              onClick={() => setMobileOpen(true)}
+              className="flex rounded-xl px-2 py-2 text-text-secondary transition-colors hover:text-foreground"
+              aria-label="Open menu"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                <line x1="3" y1="6" x2="21" y2="6" />
+                <line x1="3" y1="12" x2="21" y2="12" />
+                <line x1="3" y1="18" x2="21" y2="18" />
+              </svg>
+            </button>
+          </nav>
+        </div>
       </div>
 
       <AnimatePresence>
