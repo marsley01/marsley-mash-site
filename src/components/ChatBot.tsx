@@ -8,54 +8,17 @@ interface Message {
   content: string;
 }
 
-const faqResponses: Record<string, string> = {
-  hello:
-    "Hi there! I'm Mash's virtual assistant. Ask me about his projects, skills, or how to get in touch!",
-  hi: "Hi there! I'm Mash's virtual assistant. Ask me about his projects, skills, or how to get in touch!",
-  "who is marsley mash":
-    "Marsley Mash is a Gen Z entrepreneur and web developer based in Nairobi, Kenya. He's the founder of Munchify, Cyzora, Edyfra, Trivo Kenya, Belloria Beauty, Inshot AI, and more!",
-  "what is munchify":
-    "Munchify is a food delivery platform focused on student convenience and speed. It fulfilled 30,000+ orders in one semester at Maseno University.",
-  "what is cyzora":
-    "Cyzora is a web agency that builds and hosts framework-based websites for businesses and creators.",
-  "what is edyfra":
-    "Edyfra is an edtech platform that helps schools monitor student performance during holidays, connects tutors with students, and enables resource sharing.",
-  "what is trivo kenya":
-    "Trivo Kenya is an online store that sells premium tech gadgets and accessories.",
-  "what is belloria beauty":
-    "Belloria Beauty is a cosmetic brand showcase site that Mash built to display beauty products.",
-  "what is inshot ai":
-    "Inshot AI is an AI-powered shop assistant tool that helps customers browse products and get recommendations, acting like a smart sales assistant.",
-  "whatsapp bot":
-    "The WhatsApp Bot runs in the background to handle customer service inquiries via WhatsApp. It can show catalogs, answer product questions, and act as a shop assistant.",
-  contact:
-    "You can reach Marsley via email at mashmarsley@gmail.com or on Instagram @marlsey.official. You can also use the contact form on this site!",
-  email: "mashmarsley@gmail.com",
-  instagram: "@marlsey.official on Instagram",
-  skills:
-    "Mash specializes in Next.js, React, TypeScript, Tailwind CSS, UI/UX design, AI integrations, and full-stack web development.",
-};
-
-function getBotResponse(input: string): string {
-  const lower = input.toLowerCase().trim();
-  for (const [key, response] of Object.entries(faqResponses)) {
-    if (lower.includes(key)) {
-      return response;
-    }
-  }
-  return "I'm not sure about that. Try asking about Munchify, Cyzora, Edyfra, or how to contact Mash!";
-}
-
 export default function ChatBot() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "bot",
       content:
-        "Hey! I'm Mash's virtual assistant. Ask me anything about his projects or how to reach him!",
+        "Hey! I'm Mash's AI assistant powered by Gemini. Ask me anything about his projects, skills, or how to reach him!",
     },
   ]);
   const [input, setInput] = useState("");
+  const [loading, setLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -69,17 +32,42 @@ export default function ChatBot() {
     }
   }, [isOpen]);
 
-  const handleSend = () => {
+  const handleSend = async () => {
     const trimmed = input.trim();
-    if (!trimmed) return;
+    if (!trimmed || loading) return;
 
-    setMessages((prev) => [...prev, { role: "user", content: trimmed }]);
+    const userMessage: Message = { role: "user", content: trimmed };
+    const updatedMessages = [...messages, userMessage];
+    setMessages(updatedMessages);
     setInput("");
+    setLoading(true);
 
-    setTimeout(() => {
-      const botReply = getBotResponse(trimmed);
-      setMessages((prev) => [...prev, { role: "bot", content: botReply }]);
-    }, 400);
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ messages: updatedMessages }),
+      });
+
+      if (!res.ok) throw new Error("API error");
+
+      const data = await res.json();
+      setMessages((prev) => [
+        ...prev,
+        { role: "bot", content: data.response },
+      ]);
+    } catch {
+      setMessages((prev) => [
+        ...prev,
+        {
+          role: "bot",
+          content:
+            "Sorry, I'm having trouble connecting right now. Please try again later.",
+        },
+      ]);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -98,18 +86,20 @@ export default function ChatBot() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed bottom-24 right-6 z-50 flex h-[420px] w-[360px] flex-col overflow-hidden rounded-2xl border border-border/40 bg-card shadow-2xl shadow-black/50 backdrop-blur-2xl sm:bottom-28 sm:right-8"
+            className="fixed bottom-24 right-6 z-50 flex h-[460px] w-[calc(100vw-48px)] max-w-[380px] flex-col overflow-hidden rounded-2xl border border-border/40 bg-card shadow-2xl shadow-black/50 backdrop-blur-2xl sm:bottom-28 sm:right-8 sm:w-[380px]"
           >
             <div className="flex items-center justify-between border-b border-border/40 px-5 py-4">
               <div className="flex items-center gap-3">
-                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-accent text-xs font-bold text-white">
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-accent-start to-accent-end text-xs font-bold text-white">
                   M
                 </div>
                 <div>
                   <p className="text-sm font-semibold text-foreground">
                     Mash Assistant
                   </p>
-                  <p className="text-xs text-text-secondary">Online</p>
+                  <p className="text-xs text-text-secondary">
+                    {loading ? "Thinking..." : "Powered by Gemini"}
+                  </p>
                 </div>
               </div>
               <button
@@ -139,6 +129,15 @@ export default function ChatBot() {
                   </div>
                 </div>
               ))}
+              {loading && (
+                <div className="mb-3 flex justify-start">
+                  <div className="flex items-center gap-1.5 rounded-2xl bg-card-secondary px-4 py-3">
+                    <span className="h-2 w-2 animate-bounce rounded-full bg-text-secondary/60" style={{ animationDelay: "0ms" }} />
+                    <span className="h-2 w-2 animate-bounce rounded-full bg-text-secondary/60" style={{ animationDelay: "150ms" }} />
+                    <span className="h-2 w-2 animate-bounce rounded-full bg-text-secondary/60" style={{ animationDelay: "300ms" }} />
+                  </div>
+                </div>
+              )}
               <div ref={messagesEndRef} />
             </div>
 
@@ -151,12 +150,13 @@ export default function ChatBot() {
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={handleKeyDown}
                   placeholder="Ask me anything..."
-                  className="flex-1 bg-transparent text-sm text-foreground outline-none placeholder:text-text-secondary"
+                  disabled={loading}
+                  className="flex-1 bg-transparent text-sm text-foreground outline-none placeholder:text-text-secondary disabled:opacity-50"
                 />
                 <button
                   onClick={handleSend}
-                  disabled={!input.trim()}
-                  className="flex h-7 w-7 items-center justify-center rounded-full bg-accent text-xs text-white transition-opacity hover:opacity-80 disabled:opacity-30"
+                  disabled={!input.trim() || loading}
+                  className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-accent text-xs text-white transition-opacity hover:opacity-80 disabled:opacity-30"
                 >
                   →
                 </button>
@@ -172,7 +172,7 @@ export default function ChatBot() {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-accent text-xl text-white shadow-lg shadow-accent/30 transition-shadow hover:shadow-xl hover:shadow-accent/40 sm:bottom-8 sm:right-8"
+        className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-accent-start to-accent-end text-xl text-white shadow-lg shadow-accent/30 transition-shadow hover:shadow-xl hover:shadow-accent/40 sm:bottom-8 sm:right-8"
       >
         {isOpen ? "✕" : "?"}
       </motion.button>
