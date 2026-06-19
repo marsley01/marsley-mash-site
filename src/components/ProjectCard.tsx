@@ -1,9 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 import { TechIcon } from "./TechIcons";
-import type { ReactNode } from "react";
+import { useRef, type ReactNode } from "react";
 
 export interface ProjectData {
   title: string;
@@ -277,8 +277,33 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({ project, index }: ProjectCardProps) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const prefersReduced = useReducedMotion();
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (prefersReduced || !cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateX = ((y - centerY) / centerY) * -8;
+    const rotateY = ((x - centerX) / centerX) * 8;
+    cardRef.current.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    cardRef.current.style.transition = "transform 0.1s ease-out";
+  };
+
+  const handleMouseLeave = () => {
+    if (!cardRef.current) return;
+    cardRef.current.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg)";
+    cardRef.current.style.transition = "transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)";
+  };
+
   return (
     <motion.div
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{
@@ -287,8 +312,8 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
         ease: [0.16, 1, 0.3, 1],
       }}
       viewport={{ once: true, margin: "-50px" }}
-      whileHover={{ y: -6 }}
-      className="group flex flex-col overflow-hidden rounded-2xl border border-border/40 bg-card transition-all duration-300 hover:border-border/80 hover:shadow-lg hover:shadow-black/10"
+      whileHover={prefersReduced ? {} : { y: -6 }}
+      className="group flex flex-col overflow-hidden rounded-2xl border border-border/40 bg-card transition-shadow duration-300 hover:border-border/80 hover:shadow-lg hover:shadow-black/10"
     >
       <div className={`h-1.5 w-full bg-gradient-to-r shrink-0 ${project.accentColor}`} />
 
@@ -315,17 +340,34 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
             {project.resultBadge}
           </span>
 
-          <div className="flex items-center gap-2">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={{
+              hidden: {},
+              visible: { transition: { staggerChildren: 0.06 } },
+            }}
+            className="flex items-center gap-2"
+          >
             {project.techStack.map((tech) => (
-              <span
+              <motion.span
                 key={tech}
+                variants={{
+                  hidden: { opacity: 0, scale: 0.8 },
+                  visible: {
+                    opacity: 1,
+                    scale: 1,
+                    transition: { type: "spring", stiffness: 100, damping: 15 },
+                  },
+                }}
                 className="flex h-7 w-7 items-center justify-center rounded-full border border-border/40 bg-card-secondary/50"
                 title={tech}
               >
                 <TechIcon name={tech} />
-              </span>
+              </motion.span>
             ))}
-          </div>
+          </motion.div>
 
           <Link
             href={project.ctaHref}

@@ -6,6 +6,8 @@ import Footer from "@/components/Footer";
 import ChatBot from "@/components/ChatBot";
 import ThemeProvider from "@/components/ThemeProvider";
 import PageTransition from "@/components/PageTransition";
+import SmoothScrollProvider from "@/providers/SmoothScrollProvider";
+import CustomCursor from "@/components/CustomCursor";
 
 const inter = Inter({
   variable: "--font-geist-sans",
@@ -43,17 +45,20 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} dark h-full antialiased`}
+      className={`${inter.variable} dark h-full antialiased cursor-none`}
       suppressHydrationWarning
     >
       <body className="min-h-full bg-background font-sans text-foreground transition-colors duration-300">
         <ThemeProvider>
-          <Navigation />
-          <main className="flex-1">
-            <PageTransition>{children}</PageTransition>
-          </main>
-          <Footer />
-          <ChatBot />
+          <SmoothScrollProvider>
+            <Navigation />
+            <main className="flex-1">
+              <PageTransition>{children}</PageTransition>
+            </main>
+            <Footer />
+            <ChatBot />
+            <CustomCursor />
+          </SmoothScrollProvider>
         </ThemeProvider>
       </body>
     </html>

@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Section from "@/components/Section";
 import { DotsGrid, Crosses, Rings, GeometricShape, CornerAccents } from "@/components/VisualAnchors";
 import ProjectCard, { allProjects } from "@/components/ProjectCard";
+import RevealOnScroll from "@/components/RevealOnScroll";
 
 export default function Projects() {
   return (
@@ -18,13 +19,17 @@ export default function Projects() {
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="max-w-2xl text-center"
         >
-          <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
-            Projects
-          </h1>
-          <p className="mt-6 text-lg leading-relaxed text-text-secondary">
-            A collection of platforms, brands, and tools I&apos;ve built from
-            the ground up.
-          </p>
+          <RevealOnScroll>
+            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
+              Projects
+            </h1>
+          </RevealOnScroll>
+          <RevealOnScroll delay={0.1}>
+            <p className="mt-6 text-lg leading-relaxed text-text-secondary">
+              A collection of platforms, brands, and tools I&apos;ve built from
+              the ground up.
+            </p>
+          </RevealOnScroll>
         </motion.div>
       </section>
 

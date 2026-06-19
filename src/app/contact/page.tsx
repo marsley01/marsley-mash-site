@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import Section from "@/components/Section";
 import { DotsGrid, Crosses, Rings, GeometricShape, CornerAccents } from "@/components/VisualAnchors";
+import RevealOnScroll from "@/components/RevealOnScroll";
+import Magnetic from "@/components/Magnetic";
 
 const socials = [
   {
@@ -80,13 +82,15 @@ export default function Contact() {
         <CornerAccents />
         <DotsGrid density="medium" className="opacity-20" />
         <div className="mx-auto grid max-w-5xl gap-12 lg:grid-cols-2">
-          <motion.div
+            <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             viewport={{ once: true }}
           >
-            <h2 className="text-2xl font-bold tracking-tight">Send a Message</h2>
+            <RevealOnScroll>
+              <h2 className="text-2xl font-bold tracking-tight">Send a Message</h2>
+            </RevealOnScroll>
             {submitted ? (
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
@@ -99,12 +103,14 @@ export default function Contact() {
                 <p className="mt-2 text-sm text-text-secondary">
                   I&apos;ll get back to you as soon as possible.
                 </p>
-                <button
-                  onClick={() => setSubmitted(false)}
-                  className="mt-6 rounded-full border border-border/40 px-6 py-2 text-sm font-medium text-foreground transition-colors hover:bg-foreground/5"
-                >
-                  Send Another
-                </button>
+                <Magnetic>
+                  <button
+                    onClick={() => setSubmitted(false)}
+                    className="mt-6 rounded-full border border-border/40 px-6 py-2 text-sm font-medium text-foreground transition-colors hover:bg-foreground/5"
+                  >
+                    Send Another
+                  </button>
+                </Magnetic>
               </motion.div>
             ) : (
               <form onSubmit={handleSubmit} className="mt-8 space-y-5">
@@ -147,12 +153,14 @@ export default function Contact() {
                     className="w-full resize-none rounded-xl border border-border/40 bg-card px-5 py-3.5 text-sm text-foreground outline-none transition-colors placeholder:text-text-secondary focus:border-accent"
                   />
                 </div>
-                <button
-                  type="submit"
-                  className="w-full rounded-full bg-accent px-6 py-3.5 text-sm font-semibold text-white transition-all hover:opacity-90 active:scale-[0.97]"
-                >
-                  Send Message
-                </button>
+                <Magnetic>
+                  <button
+                    type="submit"
+                    className="w-full rounded-full bg-accent px-6 py-3.5 text-sm font-semibold text-white transition-all hover:opacity-90 active:scale-[0.97]"
+                  >
+                    Send Message
+                  </button>
+                </Magnetic>
               </form>
             )}
           </motion.div>
@@ -163,9 +171,11 @@ export default function Contact() {
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-2xl font-bold tracking-tight">
-              Connect With Me
-            </h2>
+            <RevealOnScroll>
+              <h2 className="text-2xl font-bold tracking-tight">
+                Connect With Me
+              </h2>
+            </RevealOnScroll>
             <div className="mt-8 space-y-4">
               {socials.map((social) => (
                 <a

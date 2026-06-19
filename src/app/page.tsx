@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 import Section from "@/components/Section";
 import StatsCounter from "@/components/StatsCounter";
@@ -8,17 +8,8 @@ import TechMarquee from "@/components/TechMarquee";
 import { TechIcon } from "@/components/TechIcons";
 import { DotsGrid, Rings, Crosses, GeometricShape, CornerAccents, WavyLines } from "@/components/VisualAnchors";
 import ProjectCard, { featuredProjects } from "@/components/ProjectCard";
-
-const fadeUp = {
-  initial: { opacity: 0, y: 40 },
-  animate: { opacity: 1, y: 0 },
-};
-
-const stagger = {
-  animate: {
-    transition: { staggerChildren: 0.12, delayChildren: 0.2 },
-  },
-};
+import RevealOnScroll from "@/components/RevealOnScroll";
+import Magnetic from "@/components/Magnetic";
 
 // featuredProjects imported from ProjectCard component
 
@@ -35,48 +26,118 @@ const skills = [
 ];
 
 export default function Home() {
+  const prefersReduced = useReducedMotion();
+
   return (
     <>
       <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6">
         <DotsGrid density="sparse" className="opacity-50" />
         <Crosses />
         <GeometricShape />
+
+        <div className="pointer-events-none absolute inset-0 z-[-1] overflow-hidden">
+          <motion.div
+            animate={
+              prefersReduced
+                ? {}
+                : {
+                    y: [-20, 20, -20],
+                    x: [-10, 10, -10],
+                  }
+            }
+            transition={
+              prefersReduced
+                ? { duration: 0 }
+                : { duration: 8, repeat: Infinity, ease: "easeInOut" }
+            }
+            className="absolute -top-32 -left-32 h-[600px] w-[600px] rounded-full"
+            style={{
+              background:
+                "radial-gradient(circle, rgba(59,130,246,0.2) 0%, transparent 70%)",
+            }}
+          />
+          <motion.div
+            animate={
+              prefersReduced
+                ? {}
+                : {
+                    y: [20, -20, 20],
+                    x: [10, -10, 10],
+                  }
+            }
+            transition={
+              prefersReduced
+                ? { duration: 0 }
+                : { duration: 10, repeat: Infinity, ease: "easeInOut" }
+            }
+            className="absolute -bottom-32 -right-32 h-[500px] w-[500px] rounded-full"
+            style={{
+              background:
+                "radial-gradient(circle, rgba(168,85,247,0.15) 0%, transparent 70%)",
+            }}
+          />
+        </div>
+
         <motion.div
           className="pointer-events-none absolute inset-0"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1.5 }}
+          transition={{ duration: prefersReduced ? 0 : 1.5 }}
         >
           <div className="absolute top-1/4 left-1/4 h-64 w-64 rounded-full bg-accent-start/10 blur-[120px]" />
           <div className="absolute bottom-1/4 right-1/4 h-80 w-80 rounded-full bg-accent-end/10 blur-[140px]" />
         </motion.div>
 
-        <motion.div
-          variants={stagger}
-          initial="initial"
-          animate="animate"
-          className="relative z-10 max-w-3xl text-center"
-        >
+        <div className="relative z-10 max-w-3xl text-center">
           <motion.div
-            variants={fadeUp}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            initial={prefersReduced ? {} : { opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={
+              prefersReduced
+                ? { duration: 0 }
+                : { duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0 }
+            }
           >
             <span className="inline-block rounded-full border border-border/40 bg-card/50 px-4 py-1.5 text-xs font-medium text-text-secondary backdrop-blur-xl">
               Web Developer &middot; Software Developer &middot; Nairobi
             </span>
           </motion.div>
 
-          <motion.h1
-            variants={fadeUp}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-8 bg-gradient-to-r from-foreground via-foreground/90 to-text-secondary bg-clip-text text-5xl font-bold leading-tight tracking-tight text-transparent sm:text-7xl sm:leading-tight"
-          >
-            Marsley Mash
+          <motion.h1 className="mt-8 bg-gradient-to-r from-foreground via-foreground/90 to-text-secondary bg-clip-text text-5xl font-bold leading-tight tracking-tight text-transparent sm:text-7xl sm:leading-tight">
+            {["Marsley", "Mash"].map((word, i) => (
+              <motion.span
+                key={word}
+                initial={prefersReduced ? {} : { y: 60, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={
+                  prefersReduced
+                    ? { duration: 0 }
+                    : {
+                        delay: i * 0.12,
+                        type: "spring",
+                        stiffness: 80,
+                        damping: 20,
+                      }
+                }
+                className="inline-block"
+              >
+                {word}
+              </motion.span>
+            ))}
           </motion.h1>
 
           <motion.p
-            variants={fadeUp}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            initial={prefersReduced ? {} : { opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={
+              prefersReduced
+                ? { duration: 0 }
+                : {
+                    duration: 0.7,
+                    ease: [0.16, 1, 0.3, 1],
+                    delay: 0.54,
+                  }
+            }
             className="mt-6 text-lg leading-relaxed text-text-secondary sm:text-xl"
           >
             Building brands, platforms, and digital experiences that shape
@@ -86,44 +147,57 @@ export default function Home() {
             <span className="text-foreground">Edyfra</span> & more.
           </motion.p>
 
-          <motion.div
-            variants={fadeUp}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            <motion.div
+            initial={prefersReduced ? {} : { opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={
+              prefersReduced
+                ? { duration: 0 }
+                : { duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.8 }
+            }
             className="mt-10 flex items-center justify-center gap-4"
           >
-            <Link
-              href="/projects"
-              className="rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white transition-all hover:opacity-90 active:scale-[0.97]"
-            >
-              Explore Projects
-            </Link>
-            <Link
-              href="/contact"
-              className="rounded-full border border-border/40 px-6 py-3 text-sm font-semibold text-foreground transition-all hover:bg-foreground/5 active:scale-[0.97]"
-            >
-              Get in Touch
-            </Link>
+            <Magnetic>
+              <Link
+                href="/projects"
+                className="rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white transition-all hover:opacity-90 active:scale-[0.97]"
+              >
+                Explore Projects
+              </Link>
+            </Magnetic>
+            <Magnetic>
+              <Link
+                href="/contact"
+                className="rounded-full border border-border/40 px-6 py-3 text-sm font-semibold text-foreground transition-all hover:bg-foreground/5 active:scale-[0.97]"
+              >
+                Get in Touch
+              </Link>
+            </Magnetic>
           </motion.div>
-        </motion.div>
+        </div>
 
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.5, duration: 1 }}
+          transition={{ delay: prefersReduced ? 0 : 1.5, duration: prefersReduced ? 0 : 1 }}
           className="absolute bottom-8 left-1/2 -translate-x-1/2"
         >
           <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+            animate={prefersReduced ? {} : { y: [0, 8, 0] }}
+            transition={
+              prefersReduced
+                ? { duration: 0 }
+                : { repeat: Infinity, duration: 2, ease: "easeInOut" }
+            }
             className="h-10 w-6 rounded-full border-2 border-text-secondary/40"
           >
             <motion.div
-              animate={{ y: [0, 12, 0] }}
-              transition={{
-                repeat: Infinity,
-                duration: 2,
-                ease: "easeInOut",
-              }}
+              animate={prefersReduced ? {} : { y: [0, 12, 0] }}
+              transition={
+                prefersReduced
+                  ? { duration: 0 }
+                  : { repeat: Infinity, duration: 2, ease: "easeInOut" }
+              }
               className="mx-auto mt-2 h-2 w-1 rounded-full bg-text-secondary/60"
             />
           </motion.div>
@@ -134,20 +208,14 @@ export default function Home() {
         <DotsGrid density="medium" className="opacity-30" />
         <CornerAccents />
         <Rings className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" count={2} />
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          viewport={{ once: true, margin: "-100px" }}
-          className="mb-16 text-center"
-        >
+        <RevealOnScroll className="mb-16 text-center">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
             Featured Projects
           </h2>
           <p className="mt-4 text-text-secondary">
             A glimpse into what I&apos;m building.
           </p>
-        </motion.div>
+        </RevealOnScroll>
 
         <div className="grid gap-6 sm:grid-cols-2">
           {featuredProjects.map((project, i) => (
@@ -159,13 +227,7 @@ export default function Home() {
       <Section className="relative bg-card/30">
         <GeometricShape />
         <WavyLines className="top-0 right-0" />
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          viewport={{ once: true, margin: "-100px" }}
-          className="text-center"
-        >
+        <RevealOnScroll className="text-center">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
             By the Numbers
           </h2>
@@ -177,48 +239,53 @@ export default function Home() {
             <StatsCounter target={8} suffix="+" label="Projects Built" />
             <StatsCounter target={3} suffix="+" label="Years Building" />
           </div>
-        </motion.div>
+        </RevealOnScroll>
       </Section>
 
       <Section className="relative">
         <Crosses />
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          viewport={{ once: true, margin: "-100px" }}
-          className="text-center"
-        >
+        <RevealOnScroll className="text-center">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
             Skills & Technologies
           </h2>
           <p className="mt-4 text-text-secondary">
             Tools I use to bring ideas to life.
           </p>
-          <div className="mt-10 flex flex-wrap justify-center gap-3">
-            {skills.map((skill) => (
-              <span
-                key={skill}
-                className="inline-flex items-center gap-2 rounded-full border border-border/40 bg-card px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:border-accent/50"
-              >
-                <TechIcon name={skill} />
-                {skill}
-              </span>
-            ))}
-          </div>
+        </RevealOnScroll>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={{
+            hidden: {},
+            visible: { transition: { staggerChildren: 0.06 } },
+          }}
+          className="mt-10 flex flex-wrap justify-center gap-3"
+        >
+          {skills.map((skill) => (
+            <motion.span
+              key={skill}
+              variants={{
+                hidden: { opacity: 0, scale: 0.8 },
+                visible: {
+                  opacity: 1,
+                  scale: 1,
+                  transition: { type: "spring", stiffness: 100, damping: 15 },
+                },
+              }}
+              className="inline-flex items-center gap-2 rounded-full border border-border/40 bg-card px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:border-accent/50"
+            >
+              <TechIcon name={skill} />
+              {skill}
+            </motion.span>
+          ))}
         </motion.div>
       </Section>
 
       <Section className="relative bg-card/30">
         <DotsGrid density="sparse" className="opacity-30" />
         <CornerAccents />
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          viewport={{ once: true, margin: "-100px" }}
-          className="text-center"
-        >
+        <RevealOnScroll className="text-center">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
             Tools I Use
           </h2>
@@ -228,19 +295,13 @@ export default function Home() {
           <div className="mt-10">
             <TechMarquee />
           </div>
-        </motion.div>
+        </RevealOnScroll>
       </Section>
 
       <Section className="relative">
         <Rings className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" count={2} />
         <GeometricShape />
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          viewport={{ once: true, margin: "-100px" }}
-          className="text-center"
-        >
+        <RevealOnScroll className="text-center">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
             Let&apos;s Build Something
           </h2>
@@ -248,13 +309,15 @@ export default function Home() {
             Whether it&apos;s a web app, a brand, or the next big idea —
             I&apos;m always open to collaborations.
           </p>
-          <Link
-            href="/contact"
-            className="mt-8 inline-block rounded-full bg-accent px-8 py-3 text-sm font-semibold text-white transition-all hover:opacity-90 active:scale-[0.97]"
-          >
-            Start a Conversation
-          </Link>
-        </motion.div>
+          <Magnetic>
+            <Link
+              href="/contact"
+              className="mt-8 inline-block rounded-full bg-accent px-8 py-3 text-sm font-semibold text-white transition-all hover:opacity-90 active:scale-[0.97]"
+            >
+              Start a Conversation
+            </Link>
+          </Magnetic>
+        </RevealOnScroll>
       </Section>
     </>
   );
