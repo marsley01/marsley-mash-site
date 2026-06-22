@@ -16,7 +16,6 @@ export default function SmoothScrollProvider({
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: "vertical",
       smoothWheel: true,
-      wrapper: document.body,
     });
     lenisRef.current = lenis;
 
