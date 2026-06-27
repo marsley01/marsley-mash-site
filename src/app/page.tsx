@@ -1,7 +1,8 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import Section from "@/components/Section";
 import StatsCounter from "@/components/StatsCounter";
 import TechMarquee from "@/components/TechMarquee";
@@ -11,7 +12,10 @@ import ProjectCard, { featuredProjects } from "@/components/ProjectCard";
 import RevealOnScroll from "@/components/RevealOnScroll";
 import Magnetic from "@/components/Magnetic";
 
-// featuredProjects imported from ProjectCard component
+const HeroScene = dynamic(() => import("@/components/three/HeroScene"), {
+  ssr: false,
+  loading: () => null,
+});
 
 const skills = [
   "Next.js / React",
@@ -28,22 +32,26 @@ const skills = [
 export default function Home() {
   const prefersReduced = useReducedMotion();
 
+  const { scrollYProgress } = useScroll();
+  const canvasOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
+
   return (
     <>
-      <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6">
+      <section className="relative flex min-h-[100dvh] flex-col items-center justify-center overflow-hidden px-6">
+        <motion.div style={{ opacity: canvasOpacity }} className="fixed inset-0 z-0">
+          <HeroScene />
+        </motion.div>
+
         <DotsGrid density="sparse" className="opacity-50" />
         <Crosses />
         <GeometricShape />
 
-        <div className="pointer-events-none absolute inset-0 z-[-1] overflow-hidden">
+        <div className="pointer-events-none absolute inset-0 z-[1] overflow-hidden">
           <motion.div
             animate={
               prefersReduced
                 ? {}
-                : {
-                    y: [-20, 20, -20],
-                    x: [-10, 10, -10],
-                  }
+                : { y: [-20, 20, -20], x: [-10, 10, -10] }
             }
             transition={
               prefersReduced
@@ -60,10 +68,7 @@ export default function Home() {
             animate={
               prefersReduced
                 ? {}
-                : {
-                    y: [20, -20, 20],
-                    x: [10, -10, 10],
-                  }
+                : { y: [20, -20, 20], x: [10, -10, 10] }
             }
             transition={
               prefersReduced
@@ -77,16 +82,6 @@ export default function Home() {
             }}
           />
         </div>
-
-        <motion.div
-          className="pointer-events-none absolute inset-0"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: prefersReduced ? 0 : 1.5 }}
-        >
-          <div className="absolute top-1/4 left-1/4 h-64 w-64 rounded-full bg-accent-start/10 blur-[120px]" />
-          <div className="absolute bottom-1/4 right-1/4 h-80 w-80 rounded-full bg-accent-end/10 blur-[140px]" />
-        </motion.div>
 
         <div className="relative z-10 max-w-3xl text-center">
           <motion.div
@@ -112,12 +107,7 @@ export default function Home() {
                 transition={
                   prefersReduced
                     ? { duration: 0 }
-                    : {
-                        delay: i * 0.12,
-                        type: "spring",
-                        stiffness: 80,
-                        damping: 20,
-                      }
+                    : { delay: i * 0.12, type: "spring", stiffness: 80, damping: 20 }
                 }
                 className="inline-block"
               >
@@ -132,11 +122,7 @@ export default function Home() {
             transition={
               prefersReduced
                 ? { duration: 0 }
-                : {
-                    duration: 0.7,
-                    ease: [0.16, 1, 0.3, 1],
-                    delay: 0.54,
-                  }
+                : { duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.54 }
             }
             className="mt-6 text-lg leading-relaxed text-text-secondary sm:text-xl"
           >
@@ -147,7 +133,7 @@ export default function Home() {
             <span className="text-foreground">Edyfra</span> & more.
           </motion.p>
 
-            <motion.div
+          <motion.div
             initial={prefersReduced ? {} : { opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={
@@ -180,7 +166,7 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: prefersReduced ? 0 : 1.5, duration: prefersReduced ? 0 : 1 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+          className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2"
         >
           <motion.div
             animate={prefersReduced ? {} : { y: [0, 8, 0] }}
