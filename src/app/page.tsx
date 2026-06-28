@@ -12,6 +12,8 @@ import ProjectCard, { featuredProjects } from "@/components/ProjectCard";
 import RevealOnScroll from "@/components/RevealOnScroll";
 import Magnetic from "@/components/Magnetic";
 import MouseGlowBlobs from "@/components/MouseGlowBlobs";
+import ServicesSection from "@/components/ServicesSection";
+import TestimonialsSection from "@/components/TestimonialsSection";
 
 const HeroScene = dynamic(() => import("@/components/three/HeroScene"), {
   ssr: false,
@@ -106,7 +108,7 @@ export default function Home() {
                 ? { duration: 0 }
                 : { duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.8 }
             }
-            className="mt-10 flex items-center justify-center gap-4"
+            className="mt-10 flex items-center justify-center gap-4 flex-wrap"
           >
             <Magnetic>
               <Link
@@ -123,6 +125,15 @@ export default function Home() {
               >
                 Get in Touch
               </Link>
+            </Magnetic>
+            <Magnetic>
+              <a
+                href="/cv.pdf"
+                download
+                className="rounded-full border border-border/40 px-6 py-3 text-sm font-semibold text-foreground transition-all hover:bg-foreground/5 active:scale-[0.97]"
+              >
+                Download CV
+              </a>
             </Magnetic>
           </motion.div>
         </div>
@@ -175,7 +186,7 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section className="relative bg-card/30">
+<Section className="relative bg-card/30">
         <GeometricShape />
         <WavyLines className="top-0 right-0" />
         <RevealOnScroll className="text-center">
@@ -185,11 +196,11 @@ export default function Home() {
           <p className="mt-4 text-text-secondary">
             A snapshot of the impact so far.
           </p>
-<div className="mt-12 grid gap-10 sm:grid-cols-3">
-              <StatsCounter target={10} suffix="+" label="Websites Delivered" />
-              <StatsCounter target={70} suffix="+" label="Active Users" />
-              <StatsCounter target={3} suffix="+" label="Years Building" />
-            </div>
+          <div className="mt-12 grid gap-10 sm:grid-cols-3">
+            <StatsCounter target={8} suffix="+" label="Projects Shipped" />
+            <StatsCounter target={3} suffix="+" label="Years Building" />
+            <StatsCounter target={5} suffix="+" label="Products Live" />
+          </div>
         </RevealOnScroll>
       </Section>
 
@@ -248,6 +259,10 @@ export default function Home() {
           </div>
         </RevealOnScroll>
       </Section>
+
+      <ServicesSection />
+
+      <TestimonialsSection />
 
       <Section className="relative">
         <Rings className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" count={2} />

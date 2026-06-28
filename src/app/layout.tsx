@@ -9,6 +9,7 @@ import PageTransition from "@/components/PageTransition";
 import SmoothScrollProvider from "@/providers/SmoothScrollProvider";
 import CustomCursor from "@/components/CustomCursor";
 import FloatingSvgs from "@/components/FloatingSvgs";
+import BackToTop from "@/components/BackToTop";
 
 const inter = Inter({
   variable: "--font-geist-sans",
@@ -60,6 +61,7 @@ export default function RootLayout({
             <Footer />
             <ChatBot />
             <CustomCursor />
+            <BackToTop />
           </SmoothScrollProvider>
         </ThemeProvider>
       </body>
