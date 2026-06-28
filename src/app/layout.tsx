@@ -8,6 +8,7 @@ import ThemeProvider from "@/components/ThemeProvider";
 import PageTransition from "@/components/PageTransition";
 import SmoothScrollProvider from "@/providers/SmoothScrollProvider";
 import CustomCursor from "@/components/CustomCursor";
+import FloatingSvgs from "@/components/FloatingSvgs";
 
 const inter = Inter({
   variable: "--font-geist-sans",
@@ -18,10 +19,9 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Marsley Mash — Web & Software Developer",
   description:
-    "Marsley Mash is a web and software developer, founder of Munchify, Cyzora, Edyfra, and more. Building the future, one project at a time.",
+    "Marsley Mash is a web and software developer, founder of Cyzora, Edyfra, and more. Building the future, one project at a time.",
   keywords: [
     "Marsley Mash",
-    "Munchify",
     "Cyzora",
     "Edyfra",
     "web developer",
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Marsley Mash",
     description:
-      "Web & software developer. Founder of Munchify, Cyzora, Edyfra & more.",
+      "Web & software developer. Founder of Cyzora, Edyfra & more.",
     type: "website",
   },
 };
@@ -49,9 +49,11 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-full bg-background font-sans text-foreground transition-colors duration-300">
+        <div className="grain-overlay" />
         <ThemeProvider>
           <SmoothScrollProvider>
             <Navigation />
+            <FloatingSvgs />
             <main className="flex-1">
               <PageTransition>{children}</PageTransition>
             </main>

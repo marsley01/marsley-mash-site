@@ -17,23 +17,6 @@ export interface ProjectData {
   ctaHref: string;
 }
 
-export function ProjectPreviewMunchify() {
-  return (
-    <svg viewBox="0 0 200 160" className="h-full w-full">
-      <rect width="200" height="160" rx="12" fill="#1a1a1a" />
-      <rect x="20" y="20" width="40" height="40" rx="8" fill="#10b981" opacity="0.3" />
-      <rect x="68" y="20" width="60" height="40" rx="8" fill="#10b981" opacity="0.15" />
-      <rect x="20" y="68" width="60" height="40" rx="8" fill="#10b981" opacity="0.2" />
-      <rect x="88" y="68" width="40" height="40" rx="8" fill="#059669" opacity="0.25" />
-      <circle cx="140" cy="40" r="20" fill="#10b981" opacity="0.12" />
-      <circle cx="140" cy="40" r="10" fill="#10b981" opacity="0.2" />
-      <circle cx="140" cy="40" r="4" fill="#10b981" />
-      <path d="M60 130 Q100 110 140 130" stroke="#10b981" strokeWidth="2" fill="none" opacity="0.3" />
-      <path d="M40 140 Q100 120 160 140" stroke="#10b981" strokeWidth="1.5" fill="none" opacity="0.2" />
-    </svg>
-  );
-}
-
 export function ProjectPreviewCyzora() {
   return (
     <svg viewBox="0 0 200 160" className="h-full w-full">
@@ -178,17 +161,6 @@ export function ProjectPreviewMoreSaaS() {
 
 export const featuredProjects: ProjectData[] = [
   {
-    title: "Munchify",
-    subtitle: "Food delivery for campus life",
-    description: "A food delivery platform focused on student convenience and speed, revolutionizing campus food access.",
-    accentColor: "from-emerald-500 to-teal-600",
-    image: <ProjectPreviewMunchify />,
-    resultBadge: "30,000+ orders fulfilled",
-    techStack: ["TypeScript", "React", "Node.js", "Python"],
-    ctaLabel: "View Case Study",
-    ctaHref: "/projects",
-  },
-  {
     title: "Cyzora",
     subtitle: "Web agency for modern brands",
     description: "A web agency building and hosting framework-based websites for businesses and creators.",
@@ -219,6 +191,50 @@ export const featuredProjects: ProjectData[] = [
     resultBadge: "300+ products listed",
     techStack: ["React", "Tailwind CSS", "Node.js", "Git"],
     ctaLabel: "Visit Store",
+    ctaHref: "/projects",
+  },
+  {
+    title: "Belloria Beauty",
+    subtitle: "Cosmetic brand showcase",
+    description: "A cosmetic brand showcase site featuring beauty products with a premium, elegant design.",
+    accentColor: "from-pink-500 to-rose-600",
+    image: <ProjectPreviewBelloria />,
+    resultBadge: "Beauty line showcased",
+    techStack: ["React", "TypeScript", "Tailwind CSS", "Figma"],
+    ctaLabel: "View Site",
+    ctaHref: "/projects",
+  },
+  {
+    title: "Inshot AI",
+    subtitle: "AI-powered shopping assistant",
+    description: "An AI-powered shop assistant tool that helps customers browse products and get recommendations.",
+    accentColor: "from-cyan-500 to-blue-600",
+    image: <ProjectPreviewInshot />,
+    resultBadge: "AI-driven recommendations",
+    techStack: ["Python", "Node.js", "React", "TypeScript"],
+    ctaLabel: "Learn More",
+    ctaHref: "/projects",
+  },
+  {
+    title: "WhatsApp Bot",
+    subtitle: "24/7 automated customer service",
+    description: "An automated customer service bot for WhatsApp that handles inquiries and shows product catalogs.",
+    accentColor: "from-green-500 to-emerald-600",
+    image: <ProjectPreviewWhatsApp />,
+    resultBadge: "24/7 automated support",
+    techStack: ["Node.js", "Python", "TypeScript", "Git"],
+    ctaLabel: "View Details",
+    ctaHref: "/projects",
+  },
+  {
+    title: "More SaaS",
+    subtitle: "Next-gen tools in development",
+    description: "Various SaaS products and tools in development, focused on solving real problems with clean technology.",
+    accentColor: "from-gray-500 to-zinc-600",
+    image: <ProjectPreviewMoreSaaS />,
+    resultBadge: "New products shipping",
+    techStack: ["TypeScript", "Next.js", "PostgreSQL", "Tailwind CSS"],
+    ctaLabel: "Stay Tuned",
     ctaHref: "/projects",
   },
 ];

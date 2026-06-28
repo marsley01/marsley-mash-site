@@ -11,6 +11,7 @@ import { DotsGrid, Rings, Crosses, GeometricShape, CornerAccents, WavyLines } fr
 import ProjectCard, { featuredProjects } from "@/components/ProjectCard";
 import RevealOnScroll from "@/components/RevealOnScroll";
 import Magnetic from "@/components/Magnetic";
+import MouseGlowBlobs from "@/components/MouseGlowBlobs";
 
 const HeroScene = dynamic(() => import("@/components/three/HeroScene"), {
   ssr: false,
@@ -37,7 +38,7 @@ export default function Home() {
 
   return (
     <>
-      <section className="relative flex min-h-[100dvh] flex-col items-center justify-center overflow-hidden px-6">
+      <section className="relative flex min-h-[100dvh] flex-col items-center justify-center overflow-hidden px-6 bg-grid-pattern">
         <motion.div style={{ opacity: canvasOpacity }} className="fixed inset-0 z-0">
           <HeroScene />
         </motion.div>
@@ -46,42 +47,7 @@ export default function Home() {
         <Crosses />
         <GeometricShape />
 
-        <div className="pointer-events-none absolute inset-0 z-[1] overflow-hidden">
-          <motion.div
-            animate={
-              prefersReduced
-                ? {}
-                : { y: [-20, 20, -20], x: [-10, 10, -10] }
-            }
-            transition={
-              prefersReduced
-                ? { duration: 0 }
-                : { duration: 8, repeat: Infinity, ease: "easeInOut" }
-            }
-            className="absolute -top-32 -left-32 h-[600px] w-[600px] rounded-full"
-            style={{
-              background:
-                "radial-gradient(circle, rgba(59,130,246,0.2) 0%, transparent 70%)",
-            }}
-          />
-          <motion.div
-            animate={
-              prefersReduced
-                ? {}
-                : { y: [20, -20, 20], x: [10, -10, 10] }
-            }
-            transition={
-              prefersReduced
-                ? { duration: 0 }
-                : { duration: 10, repeat: Infinity, ease: "easeInOut" }
-            }
-            className="absolute -bottom-32 -right-32 h-[500px] w-[500px] rounded-full"
-            style={{
-              background:
-                "radial-gradient(circle, rgba(168,85,247,0.15) 0%, transparent 70%)",
-            }}
-          />
-        </div>
+        <MouseGlowBlobs />
 
         <div className="relative z-10 max-w-3xl text-center">
           <motion.div
@@ -116,22 +82,21 @@ export default function Home() {
             ))}
           </motion.h1>
 
-          <motion.p
-            initial={prefersReduced ? {} : { opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={
-              prefersReduced
-                ? { duration: 0 }
-                : { duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.54 }
-            }
-            className="mt-6 text-lg leading-relaxed text-text-secondary sm:text-xl"
-          >
-            Building brands, platforms, and digital experiences that shape
-            tomorrow. Founder of{" "}
-            <span className="text-foreground">Munchify</span>,{" "}
-            <span className="text-foreground">Cyzora</span>,{" "}
-            <span className="text-foreground">Edyfra</span> & more.
-          </motion.p>
+<motion.p
+              initial={prefersReduced ? {} : { opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={
+                prefersReduced
+                  ? { duration: 0 }
+                  : { duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.54 }
+              }
+              className="mt-6 text-lg leading-relaxed text-text-secondary sm:text-xl"
+            >
+              Building brands, platforms, and digital experiences that shape
+              tomorrow. Founder of{" "}
+              <span className="text-foreground">Cyzora</span>,{" "}
+              <span className="text-foreground">Edyfra</span> & more.
+            </motion.p>
 
           <motion.div
             initial={prefersReduced ? {} : { opacity: 0, y: 40 }}
@@ -220,11 +185,11 @@ export default function Home() {
           <p className="mt-4 text-text-secondary">
             A snapshot of the impact so far.
           </p>
-          <div className="mt-12 grid gap-10 sm:grid-cols-3">
-            <StatsCounter target={30000} suffix="+" label="Orders Delivered" />
-            <StatsCounter target={8} suffix="+" label="Projects Built" />
-            <StatsCounter target={3} suffix="+" label="Years Building" />
-          </div>
+<div className="mt-12 grid gap-10 sm:grid-cols-3">
+              <StatsCounter target={10} suffix="+" label="Websites Delivered" />
+              <StatsCounter target={70} suffix="+" label="Active Users" />
+              <StatsCounter target={3} suffix="+" label="Years Building" />
+            </div>
         </RevealOnScroll>
       </Section>
 

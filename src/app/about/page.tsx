@@ -14,18 +14,12 @@ const milestones = [
   },
   {
     year: "2024",
-    title: "Launched Munchify",
-    description:
-      "Built and launched a food delivery platform in Maseno, serving 30,000+ orders and solving real student needs.",
-  },
-  {
-    year: "2024",
     title: "Founded Cyzora",
     description:
       "Started a web agency focused on building and hosting modern framework-based websites for businesses.",
   },
   {
-    year: "2025",
+    year: "2024",
     title: "Built Edyfra",
     description:
       "Created an edtech platform connecting tutors and students with performance monitoring and resource sharing.",
@@ -117,9 +111,8 @@ export default function About() {
               difference.
             </p>
             <p className="mt-4 leading-relaxed text-text-secondary">
-              Today I run multiple ventures including Munchify, Cyzora, Edyfra,
-              and I&apos;m constantly exploring how AI and software can solve
-              everyday problems.
+              Today I run Cyzora, Edyfra, and I&apos;m constantly exploring how AI
+              and software can solve everyday problems.
             </p>
           </motion.div>
 

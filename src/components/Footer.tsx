@@ -6,7 +6,15 @@ export default function Footer() {
           &copy; {new Date().getFullYear()} Marsley Mash. All rights reserved.
         </p>
         <p className="text-sm text-text-secondary">
-          Built with purpose &middot; Nairobi, Kenya
+          Built with purpose by{" "}
+          <a
+            href="https://marsley-mash.vercel.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-foreground underline underline-offset-2 hover:text-accent transition-colors"
+          >
+            Mash
+          </a>
         </p>
       </div>
     </footer>
